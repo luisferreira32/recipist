@@ -1,0 +1,13 @@
+<form action="{% url 'recipes:order' recipe.id %}" method="post">
+{% csrf_token %}
+<fieldset>
+    <legend><h1>{{ recipe.name }}</h1></legend>
+    {% for ingredient in recipe.ingredient_set.all %}
+        <input type="checkbox" name="ingredient" id="ingredient{{ forloop.counter }}" value="{{ ingredient.id }}">
+        <label for="ingredient{{ forloop.counter }}">{{ ingredient.name }}</label><br>
+    {% endfor %}
+</fieldset>
+<input type="submit" value="Vote">
+</form>
+
+{{ recipe.ingredients }}
